@@ -12,9 +12,9 @@
   --surface-color-hover: rgba(255, 255, 255, 0.02);
   --highlight-color-hover: rgba(255, 255, 255, 0.2);
   --switch-bg-url: url(./assets/moon-stars.svg);
-  }
-  
-  .light {
+}
+
+.light {
   --text-color: black;
   --bg-url: url(./assets/bg-mobile-light.jpg) no-repeat top center/cover;
   --stroke-color: rgba(0, 0, 0, 0.5);
@@ -22,10 +22,10 @@
   --surface-color-hover: rgba(0, 0, 0, 0.02);
   --highlight-color-hover: rgba(0, 0, 0, 0.1);
   --switch-bg-url: url(./assets/sun.svg);
-  
 }
 body {
   background: var(--bg-url);
+  height: 100vh;
 }
 
 /* Isso acima é um atalho, resume todas a porpriedades escritas antes a uma linha só
@@ -34,7 +34,8 @@ body {
 #container {
   margin: auto;
   margin-top: 56px;
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   padding: 0 24px;
 }
 
@@ -144,6 +145,8 @@ footer {
   z-index: 1;
   top: 50%;
   transform: translateY(-50%);
+
+  animation: slide-back 0.2s;
 }
 
 #switch span {
@@ -156,6 +159,31 @@ footer {
   border-radius: 9999px;
 }
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.4s forwards;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
 }
